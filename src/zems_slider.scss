@@ -1,0 +1,220 @@
+.zems_slider{
+    width: 100%;
+    position: relative;
+    .slider_container{
+        display: flex;
+        max-width: 100%;
+        height: 380px;
+        overflow: hidden;
+        position: relative;
+        .slide{
+            flex: 0 0 15%;
+            overflow: hidden;
+            transition: all 1s;
+            img{
+                width: 100%;
+                min-height: 100%;
+                object-fit: cover;
+                transition: all 1s;
+            }
+            &.active{
+                display: block !important;
+                background-color: aqua;
+                flex: 0 0 70% !important;
+            }
+            &:hover img{
+                transform: scale(1.1);
+            }
+        }
+    }
+    .zems_control{
+        position:absolute;
+        top:50%;
+        margin-top: -20px;
+        padding:0 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button{
+            padding:10px;
+            display: block;
+            width: 37px;
+            border-radius: 50%;
+            border:none;
+            background-color: rgba(0, 0, 0, 0.319);
+            color:#fff;
+            font-weight:bold;
+            cursor: pointer;
+        }
+    }
+}
+
+/* Slideshow container */
+.image-sliderfade {
+    display: none;
+    background: #0000006e;
+    height: 100vh;
+    position: relative;
+}
+.slide-area{
+    /* background: url('https://www.accuratelines-eg.com/media/tz_portfolio/article/cache/residential-building-modern-84-19_XL.jpg'); */
+}
+.slide-bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.slide-bg img {
+    vertical-align: middle;
+    width: 100%;
+    --animate-duration: 1s;
+}
+.slide-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+.slide_active{
+    display: block;
+}
+/* Caption text */
+.slide_quartar{
+    width: 33%;
+}
+.layer{
+    height: 100vh;
+    background-color: #0000005a;
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.top_10p{
+    top: 10%;
+}
+.left_10p{
+    left: 10%;
+}
+.right_10p{
+    right: 10%;
+}
+.bottom_10p{
+    bottom: 10%;
+}
+.top_15p{
+    top: 15%;
+}
+.left_15p{
+    left: 15%;
+}
+.right_15p{
+    right: 15%;
+}
+.bottom_15p{
+    bottom: 18%;
+}
+.top_20p{
+    top: 20%;
+}
+.left_20p{
+    left: 20%;
+}
+.right_20p{
+    right: 20%;
+}
+.bottom_20p{
+    bottom: 20%;
+}
+.top_30p{
+    top: 30%;
+}
+.left_30p{
+    left: 30%;
+}
+.right_30p{
+    right: 30%;
+}
+.bottom_30p{
+    bottom: 30%;
+}
+.bg-black{
+    background-color: #0000006e;
+}
+.text-shadow{
+    color: #f2f2f2;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 5px #000;
+}
+.slide-container .p-1{
+    padding: 1rem;
+}
+.slide-container .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 20px 15px;
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: left;
+}
+
+/* The dots/bullets/indicators */
+.slide-pager{
+    top: 50%;
+    left: 70px;
+    width: 25px;
+    position: absolute;
+    z-index: 99;
+    margin-top: -50px;
+}
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 6px;
+    background-color: transparent;
+    border:2px solid #ddd;
+    border-radius: 50%;
+    transition: border-color 0.6s ease;
+}
+
+.dot.active {
+    border-color: #666;
+}
+
+/* Animation */
+.fade {
+    -webkit-animation-name: fade-image;
+    -webkit-animation-duration: 5.5s;
+    animation-name: fade-image;
+    animation-duration: 5.5s;
+}
+
+@-webkit-keyframes fade-image {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-image {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {
+        font-size: 11px;
+    }
+}
