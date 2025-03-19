@@ -15,61 +15,63 @@
     </style>
 </head>
 <body>
+    
     <h1>Slider Example 01</h1>
     <div class="zems_slider">
         <div class="slide-container">
-            <div class="slide-area">
-                <div class="image-sliderfade fade">
-                    <div class="slide-bg animate__animated" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
-                    <div class="absolute bottom_15p slide_quartar left_10p p-1">
-                        <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">This is Text Bottom</h1>
-                        <p class="zems">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
-                    </div>
-                </div>
-                <div class="image-sliderfade fade">
-                    <div class="slide-bg animate__animated" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
-                    <div class="absolute bottom_15p slide_quartar left_10p p-1">
-                        <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">This is Slide Text Bottom</h1>
-                        <p class="zems">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
-                    </div>
-                </div>
-                <div class="image-sliderfade fade">
-                    <div class="slide-bg animate__animated animate__fadeInRight" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
-                    <div class="absolute bottom_15p slide_quartar left_10p p-1">
-                        <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">This is Another Text Bottom</h1>
-                        <p class="zems">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
-                    </div>
+            <div class="slide fade">
+                <div class="slide-bg animate__animated" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
+                <div class="absolute bottom_15p slide_quartar left_10p p-1">
+                    <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">1. This is Text Bottom</h1>
+                    <p class="zems">1 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
                 </div>
             </div>
-            <div class="slide-pager"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+            <div class="slide fade">
+                <div class="slide-bg animate__animated" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
+                <div class="absolute bottom_15p slide_quartar left_10p p-1">
+                    <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">2. This is Slide Text Bottom</h1>
+                    <p class="zems">2 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
+                </div>
+            </div>
+            <div class="slide fade">
+                <div class="slide-bg animate__animated animate__fadeInRight" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
+                <div class="absolute bottom_15p slide_quartar left_10p p-1">
+                    <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">3. This is Another Text Bottom</h1>
+                    <p class="zems">3 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
+                </div>
+            </div>
         </div>
     </div>
+    
     <h1>Example 2</h1>
     <div class="zems_slider">
-        <div class="slider_container" id="zems_3slider">
+        <div class="zems_slider_pager">
             <div class="slide">
-                <img src="/example/assets/img/slide.avif" alt="">
+                <img src="https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg" alt="">
             </div>
             <div class="slide">
-                <img src="/example/assets/img/slide.avif" alt="">
+                <img src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg" alt="">
             </div>
             <div class="slide">
-                <img src="/example/assets/img/slide.avif" alt="">
+                <img src="https://cdn.pixabay.com/photo/2018/08/04/11/30/draw-3583548_1280.png" alt="">
             </div>
             <div class="slide">
-                <img src="/example/assets/img/slide.avif" alt="">
+                <img src="https://image-processor-storage.s3.us-west-2.amazonaws.com/images/866759932dc5358cee86f6552d1250f2/inside-bubble-spheres.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="https://assets.imgix.net/hp/snowshoe.jpg" alt="">
             </div>
         </div>
-        <div class="zems_control">
-            <button class="pre">←</button>
-            <button class="next">→</button>
-        </div>
+       
     </div>
+    <div id="upSlide"></div>
     <script src="../src/zems_animate.js"></script>
     <script type="module">
-        import {zems_slider, zems_3item_slider} from '../src/zems_slider.js';
+        import {zems_slider, zems_slider_builder, zems_slider_pager, zems_slider_pager_builder} from '../src/zems_slider.js';
         zems_slider();
-        zems_3item_slider();
+        // zems_slider_builder();
+        // zems_slider_pager();
+        // zems_slider_pager_builder();
     </script>
 
 </body>

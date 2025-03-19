@@ -1,7 +1,7 @@
 .zems_slider{
     width: 100%;
     position: relative;
-    .slider_container{
+    .zems_slider_pager{
         display: flex;
         max-width: 100%;
         height: 380px;
@@ -11,6 +11,7 @@
             flex: 0 0 15%;
             overflow: hidden;
             transition: all 1s;
+            position: relative;
             img{
                 width: 100%;
                 min-height: 100%;
@@ -25,6 +26,34 @@
             &:hover img{
                 transform: scale(1.1);
             }
+            .slide-bg{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .slide-bg img {
+                vertical-align: middle;
+                width: 100%;
+                --animate-duration: 1s;
+            }
+        }
+    }
+    .slide-container{
+        .slide{
+            position: relative;
+        }
+        .p-1{
+            padding: 1rem;
+        }
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 20px 15px;
+            position: absolute;
+            bottom: 60px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: left;
         }
     }
     .zems_control{
@@ -32,7 +61,7 @@
         top:50%;
         margin-top: -20px;
         padding:0 20px;
-        width: 100%;
+        width: calc(100% - 40px);
         display: flex;
         justify-content: space-between;
         button{
@@ -47,174 +76,178 @@
             cursor: pointer;
         }
     }
-}
+    .prev, .next{
+        position:absolute;
+        top:50%;
+        margin-top: -20px;
+        padding:10px 0px;
+        z-index: 99;
+        display: block;
+        width: 40px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.319);
+        color:#fff;
+        text-align: center;
+        font-weight:bold;
+        cursor: pointer;
 
-/* Slideshow container */
-.image-sliderfade {
-    display: none;
-    background: #0000006e;
-    height: 100vh;
-    position: relative;
-}
-.slide-area{
-    /* background: url('https://www.accuratelines-eg.com/media/tz_portfolio/article/cache/residential-building-modern-84-19_XL.jpg'); */
-}
-.slide-bg{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-.slide-bg img {
-    vertical-align: middle;
-    width: 100%;
-    --animate-duration: 1s;
-}
-.slide-container {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-}
-.slide_active{
-    display: block;
-}
-/* Caption text */
-.slide_quartar{
-    width: 33%;
-}
-.layer{
-    height: 100vh;
-    background-color: #0000005a;
-    position: relative;
-}
-.absolute{
-    position: absolute;
-}
-.top_10p{
-    top: 10%;
-}
-.left_10p{
-    left: 10%;
-}
-.right_10p{
-    right: 10%;
-}
-.bottom_10p{
-    bottom: 10%;
-}
-.top_15p{
-    top: 15%;
-}
-.left_15p{
-    left: 15%;
-}
-.right_15p{
-    right: 15%;
-}
-.bottom_15p{
-    bottom: 18%;
-}
-.top_20p{
-    top: 20%;
-}
-.left_20p{
-    left: 20%;
-}
-.right_20p{
-    right: 20%;
-}
-.bottom_20p{
-    bottom: 20%;
-}
-.top_30p{
-    top: 30%;
-}
-.left_30p{
-    left: 30%;
-}
-.right_30p{
-    right: 30%;
-}
-.bottom_30p{
-    bottom: 30%;
-}
-.bg-black{
-    background-color: #0000006e;
-}
-.text-shadow{
-    color: #f2f2f2;
-    text-transform: uppercase;
-    text-shadow: 3px 3px 5px #000;
-}
-.slide-container .p-1{
-    padding: 1rem;
-}
-.slide-container .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 20px 15px;
-    position: absolute;
-    bottom: 60px;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    text-align: left;
-}
-
-/* The dots/bullets/indicators */
-.slide-pager{
-    top: 50%;
-    left: 70px;
-    width: 25px;
-    position: absolute;
-    z-index: 99;
-    margin-top: -50px;
-}
-.dot {
-    height: 10px;
-    width: 10px;
-    margin: 6px;
-    background-color: transparent;
-    border:2px solid #ddd;
-    border-radius: 50%;
-    transition: border-color 0.6s ease;
-}
-
-.dot.active {
-    border-color: #666;
-}
-
-/* Animation */
-.fade {
-    -webkit-animation-name: fade-image;
-    -webkit-animation-duration: 5.5s;
-    animation-name: fade-image;
-    animation-duration: 5.5s;
-}
-
-@-webkit-keyframes fade-image {
-    from {
-        opacity: 0.4;
     }
-    to {
-        opacity: 1;
+    .next{
+        right:0;
+    }
+    
+    .add-slide{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 999999;
+        padding: 10px;
+        background-color: #2e8b57;
+        cursor: pointer;
+    }
+    .remove-slide{
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 999999;
+        padding: 10px;
+        background-color: #bababa;
+        cursor: pointer;
+    }
+    .add-remove{
+        position: absolute;
+        display: flex;
+        right: 0;
+        top: 0;
+        background-color: rgb(135, 135, 135);
+        z-index: 999;
+        cursor: pointer;
+        div{
+            padding: 10px;
+        }
+        div:nth-child(1){
+            background-color: rgb(90, 147, 125);
+        }
+    }
+    .slide_quartar{
+        width: 33%;
+    }
+    .absolute{
+        position: absolute;
+    }
+    .top_10p{
+        top: 10%;
+    }
+    .left_10p{
+        left: 10%;
+    }
+    .right_10p{
+        right: 10%;
+    }
+    .bottom_10p{
+        bottom: 10%;
+    }
+    .top_15p{
+        top: 15%;
+    }
+    .left_15p{
+        left: 15%;
+    }
+    .right_15p{
+        right: 15%;
+    }
+    .bottom_15p{
+        bottom: 18%;
+    }
+    .top_20p{
+        top: 20%;
+    }
+    .left_20p{
+        left: 20%;
+    }
+    .right_20p{
+        right: 20%;
+    }
+    .bottom_20p{
+        bottom: 20%;
+    }
+    .top_30p{
+        top: 30%;
+    }
+    .left_30p{
+        left: 30%;
+    }
+    .right_30p{
+        right: 30%;
+    }
+    .bottom_30p{
+        bottom: 30%;
+    }
+    .bg-black{
+        background-color: #0000006e;
+    }
+    .text-shadow{
+        color: #f2f2f2;
+        text-transform: uppercase;
+        text-shadow: 3px 3px 5px #000;
+    }
+    
+    
+    /* The dots/bullets/indicators */
+    .slide-pager{
+        top: 50%;
+        left: 70px;
+        width: 25px;
+        position: absolute;
+        z-index: 99;
+        margin-top: -50px;
+    }
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 6px;
+        background-color: transparent;
+        border:2px solid #ddd;
+        border-radius: 50%;
+        transition: border-color 0.6s ease;
+        &.active {
+            border-color: #666;
+        }
+    }
+    
+    
+    /* Animation */
+    .fade {
+        -webkit-animation-name: fade-image;
+        -webkit-animation-duration: 5.5s;
+        animation-name: fade-image;
+        animation-duration: 5.5s;
+    }
+    
+    @-webkit-keyframes fade-image {
+        from {
+            opacity: 0.4;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fade-image {
+        from {
+            opacity: 0.4;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+        .text {
+            font-size: 11px;
+        }
     }
 }
 
-@keyframes fade-image {
-    from {
-        opacity: 0.4;
-    }
-    to {
-        opacity: 1;
-    }
-}
 
-
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-    .text {
-        font-size: 11px;
-    }
-}
