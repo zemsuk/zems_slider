@@ -1,282 +1,182 @@
-const zems_slider = (ev) => {
-    let slideIndex = 0;
-    const sliderMain = document.querySelector(".zems_slider") 
-    const totalSlide = sliderMain.querySelectorAll('.slide')
-    // create a new div element
-    const pager = document.createElement("div");
-    pager.className = "slide-pager";
+const zemsSlider_basic = (data= false) => {
+    const masterSlider = document.querySelectorAll('.zems_slider');
     
-    totalSlide.forEach((slide, index)=>{
-        var createDot = document.createElement("div");
-        createDot.className = "dot";
-        pager.appendChild(createDot);
-    })
-    function showSlides() {
-        totalSlide.forEach((slide, index)=>{
-            slide.style.display = "none";
-            pager.childNodes[index].className = pager.childNodes[index].className.replace("active", "");
-        })
-        
-        sliderMain.insertBefore(pager, sliderMain.childNodes[0]);
-        // check for boundary
-        if (slideIndex >= totalSlide.length) {
-            slideIndex = 0;
-        }
-        totalSlide[slideIndex].style.display = "block";
-        pager.childNodes[slideIndex].classList.add("active")
-        setTimeout(showSlides, 5000);
-        slideIndex++;
-    }
-    showSlides();  
-};
-const zems_slider_builder = (ev) => {
-    let slideIndex = 0;
-    const sliderMain = document.querySelector(".zems_slider") 
-    const totalSlide = sliderMain.querySelectorAll('.slide')
-    // create a new div element
-    const addRemove = document.createElement("div");
-    addRemove.className = "add-remove";
-    const addDiv = document.createElement("div");
-    addDiv.className = "add-slide";
-    const addContent = document.createTextNode("➕");
-    addDiv.appendChild(addContent);
-    const removeDiv = document.createElement("div");
-    removeDiv.className = "remove-slide";
-    const removeContent = document.createTextNode("🚫");
-    removeDiv.appendChild(removeContent);
-    
-    sliderMain.insertBefore(addDiv, sliderMain.childNodes[0]);
-
-
-    const pager = document.createElement("div");
-    pager.className = "slide-pager";
-    const pre = document.createElement("div");
-    pre.className = "prev";
-    const preContent = document.createTextNode("←");
-    pre.appendChild(preContent);
-    sliderMain.insertBefore(pre, sliderMain.childNodes[0]);
-    const next = document.createElement("div");
-    next.className = "next";
-    const nextContent = document.createTextNode("→");
-    next.appendChild(nextContent);
-    sliderMain.insertBefore(next, sliderMain.childNodes[0]);
-    // totalSlide.forEach((slide, index)=>{
-    //     var createDot = document.createElement("div");
-    //     createDot.className = "dot";
-    //     pager.appendChild(createDot);
-    // })
-    //
-
-    var remItem = ""
-    addDiv.addEventListener("click", () => {
-        console.log("Add Slide");
-        var upSlide = sliderMain.querySelector('.slide-container')
-        totalSlide[0].insertBefore(removeDiv, totalSlide[0].childNodes[0]);
-        upSlide.innerHTML = upSlide.innerHTML + totalSlide[0].outerHTML
-        remItem = document.querySelectorAll('.remove-slide')
-        rem_item()
-        slidesControl();
-    })
-    var slideMod = ""
-    totalSlide.forEach(el=>{
-        el.insertBefore(removeDiv, el.childNodes[0]);
-        slideMod += el.outerHTML
-    })
-    var updatedSlide = sliderMain.querySelector('.slide-container')
-    updatedSlide.innerHTML = slideMod
-    updatedSlide = updatedSlide.childNodes
-    ///
-    const rem_item = () => {
-        remItem = sliderMain.querySelectorAll('.remove-slide')
-        remItem.forEach((rem, index)=>{
-            rem.addEventListener("click", (e) => {
-                console.log("Remove Slide");
-                if(e.target.closest('.slide').nextSibling){
-                    var nexsl = e.target.closest('.slide').nextSibling.style.display = "block";
-                    console.log(nexsl);
-                    e.target.closest('.slide').remove()
-                } else if(e.target.closest('.slide').previousSibling) {
-                    console.log("pre Slide");
-                    var presl = e.target.closest('.slide').previousSibling.style.display = "block";
-                    console.log(presl);
-                    e.target.closest('.slide').remove()
-                } 
-            })
-        })
-    }
-    rem_item()
-
-    function slidesControl() {
-        updatedSlide.forEach((slide, index)=>{
-            console.log(slide);
-            slide.style.display = "none";
-        })
-        updatedSlide[slideIndex].style.display = "block";
-    }
-    slidesControl();
-    pre.addEventListener("click", () => {
-        if(slideIndex > 0){
-        slideIndex = slideIndex - 1;
-        }
-        slidesControl();
-    })
-    next.addEventListener("click", () => {
-        if(slideIndex < updatedSlide.length -1){
-        slideIndex = slideIndex + 1;
-        }
-        slidesControl();
-    })
-};
-
-
-const zems_slider_pager = (ev) => {
-    let currentIndex = 0;
-    const sliderMain = document.querySelector(".zems_slider") 
-    const totalSlide = sliderMain.querySelectorAll('.slide')
-    // create a new div element
-    
-
-    const pre = document.createElement("div");
-    pre.className = "prev";
-    const preContent = document.createTextNode("←");
-    pre.appendChild(preContent);
-    sliderMain.insertBefore(pre, sliderMain.childNodes[0]);
-    const next = document.createElement("div");
-    next.className = "next";
-    const nextContent = document.createTextNode("→");
-    next.appendChild(nextContent);
-    sliderMain.insertBefore(next, sliderMain.childNodes[0]);
-    var slideMod = ""
-    slideMod += totalSlide[totalSlide.length -1].outerHTML
-    totalSlide.forEach(el=>{
-        slideMod += el.outerHTML
-    })
-    slideMod += totalSlide[0].outerHTML
-    var updatedSlide = sliderMain.querySelector('.zems_slider_pager')
-    updatedSlide.innerHTML = slideMod
-    const nextSlide = (inc) => {
-        updatedSlide.childNodes.forEach((slide, index)=>{
-            slide.style.display = "none";
-            updatedSlide.childNodes[currentIndex].classList.remove("active")
-        })
-        currentIndex=(currentIndex+updatedSlide.childNodes.length+inc)%updatedSlide.childNodes.length;
-        console.log(currentIndex);
-        if(updatedSlide.childNodes.length-1 == currentIndex){
-            console.log("Last");
-            currentIndex = 1
-        }
-        if(updatedSlide.childNodes.length > currentIndex){
-            updatedSlide.childNodes[currentIndex].previousSibling.style.display = "block";
-            updatedSlide.childNodes[currentIndex].nextSibling.style.display = "block";
-            updatedSlide.childNodes[currentIndex].classList.add("active")
-        }
-    }
-
-    nextSlide(1)
-
-    next.addEventListener("click", () => {
-        nextSlide(1)
-    })
-
-    pre.addEventListener("click", () => {
-        if(currentIndex == 1){
-            nextSlide(updatedSlide.childNodes.length -3)
+    var slideInterval = 3000; // 3 seconds
+    masterSlider.forEach(mainSlider => {
+        const slider = mainSlider.querySelector('.zems_slider_container');
+        const slides = slider.querySelectorAll('.zems_slide');
+        // console.log(mainSlider.dataset);
+        let currentSlideIndex = 0;
+        var slidesPerPage = 3;
+        var slideSetting = {slideWidth:0, slideGap:0}
+        if(mainSlider.dataset.timeout){
+            slideInterval = mainSlider.dataset.timeout
         } else {
-            nextSlide(-1)
+            slideInterval = 3000;
         }
-    })
+        if(mainSlider.dataset.slide){
+            slidesPerPage = mainSlider.dataset.slide
+            slideSetting.slideWidth = mainSlider.offsetWidth / slidesPerPage
+        }
+        var slideGap = 0
+        if(mainSlider.dataset.gap){
+            slideGap = mainSlider.dataset.gap
+            slideSetting.slideWidth = (mainSlider.offsetWidth / slidesPerPage) - slideGap
+        }
+        slider.style.gap = slideGap+"px"
+        var slidePager = document.createElement('div')
+        slidePager.className = 'zems_slide_pager'
+        slides.forEach((element, i) => {
+            element.style.width = slideSetting.slideWidth+"px"
+            const slideDot = document.createElement('li')
+            slidePager.appendChild(slideDot)
+        })
+        function showSlide(index) {
+            const translateX = -index * (slides[0].offsetWidth + parseInt(slideGap));
+            slider.style.transform = `translateX(${translateX}px)`;
+        }
+        function prevSlide() {
+            console.log(currentSlideIndex);
+            currentSlideIndex = (currentSlideIndex > 0) ? currentSlideIndex - 1 : slides.length - slidesPerPage;
+            const translateX = -currentSlideIndex * (slides[0].offsetWidth + parseInt(slideGap));
+            slider.style.transform = `translateX(${translateX}px)`;
+        }
+        function nextSlide() {
+            
+            currentSlideIndex = (currentSlideIndex < slides.length - slidesPerPage) ? currentSlideIndex + 1 : 0;
+            showSlide(currentSlideIndex);
+        }
+        if(mainSlider.dataset.play && mainSlider.dataset.play == 'on'){
+            // Start autoplay
+            let autoplayTimer = setInterval(nextSlide, slideInterval);
+        }
+        if(mainSlider.dataset.control && mainSlider.dataset.control == 'on'){
+            const pagerControl = document.createElement('div')
+            pagerControl.className = 'zems_control'
+            const pre = document.createElement('div')
+            pre.className = 'prev-btn'
+            const preContent = document.createTextNode('←')
+            pre.appendChild(preContent)
+            pre.addEventListener('click', ()=>{
+                prevSlide()
+            })
+            pagerControl.appendChild(pre)
+            const next = document.createElement('div')
+            next.className = 'next-btn'
+            const nextContent = document.createTextNode('→')
+            next.appendChild(nextContent)
+            next.addEventListener('click', () => {
+                nextSlide()
+            });
+            pagerControl.appendChild(next)
+            mainSlider.insertBefore(pagerControl, mainSlider.childNodes[0])
+        }
+        if(mainSlider.dataset.pager && mainSlider.dataset.pager == 'on'){
+            // const slidePager = document.createElement('div')
+            // slidePager.className = 'zems_slide_pager'
+            // const pre = document.createElement('div')
+            // pre.className = 'btn'
+            // const preContent = document.createTextNode('←')
+            // pre.appendChild(preContent)
+            // slidePager.appendChild(pager)
+            
+            mainSlider.insertBefore(slidePager, mainSlider.childNodes[0])
+        }
+        showSlide(currentSlideIndex);
+    })   
 }
-const zems_slider_pager_builder = (ev) => {
-    let currentIndex = 0;
-    const sliderMain = document.querySelector(".zems_slider") 
-    const totalSlide = sliderMain.querySelectorAll('.slide')
-    // create a new div element
-    const addRemove = document.createElement("div");
-    addRemove.className = "add-remove";
-    const addDiv = document.createElement("div");
-    addDiv.className = "add-slide";
-    const addContent = document.createTextNode("➕");
-    addDiv.appendChild(addContent);
-    const removeDiv = document.createElement("div");
-    removeDiv.className = "remove-slide";
-    const removeContent = document.createTextNode("🚫");
-    removeDiv.appendChild(removeContent);
-    
-    sliderMain.insertBefore(addDiv, sliderMain.childNodes[0]);
-    
-    const pre = document.createElement("div");
-    pre.className = "prev";
-    const preContent = document.createTextNode("←");
-    pre.appendChild(preContent);
-    sliderMain.insertBefore(pre, sliderMain.childNodes[0]);
-    const next = document.createElement("div");
-    next.className = "next";
-    const nextContent = document.createTextNode("→");
-    next.appendChild(nextContent);
-    sliderMain.insertBefore(next, sliderMain.childNodes[0]);
-    var remItem = ""
-    addDiv.addEventListener("click", () => {
-        console.log("Add Slide");
-        var upSlide = sliderMain.querySelector('.zems_slider_pager')
-        upSlide.innerHTML = upSlide.innerHTML + totalSlide[0].outerHTML
-        remItem = document.querySelectorAll('.remove-slide')
-        rem_item()
-    })
-    var slideMod = ""
-    totalSlide.forEach(el=>{
-        el.insertBefore(removeDiv, el.childNodes[0]);
-        slideMod += el.outerHTML
-    })
-    totalSlide[0].insertBefore(removeDiv, totalSlide[0].childNodes[0]);
-    // slideMod += totalSlide[0].outerHTML
-    var updatedSlide = sliderMain.querySelector('.zems_slider_pager')
-    updatedSlide.innerHTML = slideMod
-    updatedSlide = updatedSlide.childNodes
-    const rem_item = () => {
-        remItem = sliderMain.querySelectorAll('.remove-slide')
-        remItem.forEach((rem, index)=>{
-            rem.addEventListener("click", (e) => {
-                console.log("Remove Slide");
-                e.target.closest('.slide').remove()
-                // updatedSlide[index].remove()
+const zemsSlider_basic_main = (data= false) => {
+    const masterSlider = document.querySelectorAll('.zems_slider');
+    masterSlider.forEach(mainSlider => {
+        const slider = mainSlider.querySelector('.zems_slider_container');
+        const slides = slider.querySelectorAll('.zems_slide');
+        console.log("----");
+        console.log(mainSlider.dataset);
+        console.log("----");
+        let slideIndex = 0;
+        var slidesPerPage = 3;
+        var slideSetting = {slideWidth:0, slideGap:0}
+        if(mainSlider.dataset.slide){
+            slidesPerPage = mainSlider.dataset.slide
+            slideSetting.slideWidth = mainSlider.offsetWidth / slidesPerPage
+        }
+        var slideGap = 0
+        if(mainSlider.dataset.gap){
+            slideGap = mainSlider.dataset.gap
+            slideSetting.slideWidth = (mainSlider.offsetWidth / slidesPerPage) - slideGap
+        }
+        if(mainSlider.dataset.play && mainSlider.dataset.play == 'auto'){
+            // mainSlider.dataset.gap
+            console.log("Yes");
+            slides.forEach((el, i)=>{
+                // setInterval(zemsSliding(slides, slider, i), 100);
             })
-        })
-    }
-    rem_item()
-    const nextSlide = (inc) => {
-        
-        updatedSlide.forEach((slide, index)=>{
-            slide.style.display = "none";
-            slide.insertBefore(removeDiv, slide.childNodes[0]);
-            updatedSlide[currentIndex].classList.remove("active")
-        })
-        currentIndex=(currentIndex+updatedSlide.length+inc)%updatedSlide.length;
-        
-        if(updatedSlide.length-1 == currentIndex){
-            console.log("Last");
-            currentIndex = 1
+            console.log("Loop");
+            setInterval(zemsSliding(slides, slider, slideIndex), 1000);
         }
-        if(updatedSlide.length > currentIndex){
-            console.log(currentIndex);
-            updatedSlide[currentIndex-1].style.display = "block";
-            updatedSlide[currentIndex+1].style.display = "block";
-            updatedSlide[currentIndex].classList.add("active")
-        }
-    }
-
-    nextSlide(1)
-
-    next.addEventListener("click", () => {
-        nextSlide(1)
-    })
-
-    pre.addEventListener("click", () => {
-        if(currentIndex == 1){
-            nextSlide(updatedSlide.length -2)
-        } else {
-            nextSlide(-1)
-        }
-    })
+        slider.style.gap = slideGap+"px"
+        zemsPager(mainSlider, slideIndex, slideSetting)
+        zemsControl(mainSlider,slidesPerPage, slideIndex)
+    });
+    
+}
+const zemsSliding = (slides, slider, slideIndex) => {
+    console.log(slideIndex);
+    const translateX = -slideIndex * (slides[0].offsetWidth + 10);
+    slider.style.transform = `translateX(${translateX}px)`;
 }
 
-export { zems_slider, zems_slider_builder, zems_slider_pager, zems_slider_pager_builder }
+const zemsControl = (sliderMain, slidesPerPage, slideIndex) => {
+    const slider = sliderMain.querySelector('.zems_slider_container');
+    const slides = sliderMain.querySelectorAll('.zems_slide');
+    const pagerControl = document.createElement('div')
+    pagerControl.className = 'zems_control'
+    const pre = document.createElement('div')
+    pre.className = 'prev-btn'
+    const preContent = document.createTextNode('←')
+    pre.appendChild(preContent)
+    pre.addEventListener('click', ()=>{
+        if(slideIndex == 0){
+            slideIndex = slides.length - slidesPerPage + 1;
+            console.log(slideIndex);
+            zemsSliding(slides, slider, slideIndex);
+        }
+        if (slideIndex > 0) {
+            slideIndex--;
+            zemsSliding(slides, slider, slideIndex);
+        }
+    })
+    pagerControl.appendChild(pre)
+    // sliderMain.insertBefore(pre, sliderMain.childNodes[0])
+    const next = document.createElement('div')
+    next.className = 'next-btn'
+    const nextContent = document.createTextNode('→')
+    next.appendChild(nextContent)
+    next.addEventListener('click', () => {
+        if(slideIndex == slides.length - slidesPerPage){
+            slideIndex = -1
+            zemsSliding(slides, slider, slideIndex);
+        }
+        if (slideIndex < slides.length - slidesPerPage) {
+            slideIndex++;
+            zemsSliding(slides, slider, slideIndex);
+        }
+    });
+    pagerControl.appendChild(next)
+    sliderMain.insertBefore(pagerControl, sliderMain.childNodes[0])
+}
+const zemsPager = (sliderMain, slideIndex, slideSetting) => {
+    const slides = sliderMain.querySelectorAll('.zems_slide');
+    const pager = document.createElement('ul')
+    pager.className = 'zems_slide_pager'
+    slides.forEach((element, i) => {
+        element.style.width = slideSetting.slideWidth+"px"
+        const next = document.createElement('li')
+        next.className = 'zems_pager_dot'
+        const nextContent = document.createTextNode(i+1)
+        next.appendChild(nextContent)
+        pager.appendChild(next)
+    });
+    sliderMain.insertBefore(pager, sliderMain.childNodes[0])
+}
+export { zemsSlider_basic}

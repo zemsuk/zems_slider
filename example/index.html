@@ -3,76 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zems Slider Example</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>ZEMS Slider</title>
     <link rel="stylesheet" href="../src/zems_slider.css">
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
 <body>
-    
-    <h1>Slider Example 01</h1>
-    <div class="zems_slider">
-        <div class="slide-container">
-            <div class="slide fade">
-                <div class="slide-bg animate__animated" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
-                <div class="absolute bottom_15p slide_quartar left_10p p-1">
-                    <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">1. This is Text Bottom</h1>
-                    <p class="zems">1 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
-                </div>
-            </div>
-            <div class="slide fade">
-                <div class="slide-bg animate__animated" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
-                <div class="absolute bottom_15p slide_quartar left_10p p-1">
-                    <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">2. This is Slide Text Bottom</h1>
-                    <p class="zems">2 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
-                </div>
-            </div>
-            <div class="slide fade">
-                <div class="slide-bg animate__animated animate__fadeInRight" data-zems="animate__fadeInRight"><img src="/example/assets/img/slide.avif"></div>
-                <div class="absolute bottom_15p slide_quartar left_10p p-1">
-                    <h1 class="zems text-shadow animate__animated" data-zems="animate__slideInUp">3. This is Another Text Bottom</h1>
-                    <p class="zems">3 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, ipsam, cupiditate quis quod, adipisci repellendus praesentium explicabo deserunt perferendis eligendi dignissimos! Nulla ipsum asperiores illo tempora mollitia perspiciatis dolorem architecto.</p>
-                </div>
-            </div>
+    <h1>ZEMS Slider Basic</h1>
+    <div class="zems_slider" data-slide="2" data-gap="16" data-play="on">
+        <div class="zems_slider_container">
+            <div class="zems_slide">Slide 1</div>
+            <div class="zems_slide">Slide 2</div>
+            <div class="zems_slide">Slide 3</div>
+            <div class="zems_slide">Slide 4</div>
+            <div class="zems_slide">Slide 5</div>
+            <div class="zems_slide">Slide 6</div>
+            <div class="zems_slide">Slide 7</div>
+            <div class="zems_slide">Slide 8</div>
+            <!-- <div class="zems_slide">Slide 9</div>
+            <div class="zems_slide">Slide 10</div> -->
         </div>
+        <!-- <div class="zems_control">
+            <button class="prev-btn">Prev</button>
+            <button class="next-btn">Next</button>
+        </div> -->
     </div>
-    
-    <h1>Example 2</h1>
-    <div class="zems_slider">
-        <div class="zems_slider_pager">
-            <div class="slide">
-                <img src="https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg" alt="">
-            </div>
-            <div class="slide">
-                <img src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg" alt="">
-            </div>
-            <div class="slide">
-                <img src="https://cdn.pixabay.com/photo/2018/08/04/11/30/draw-3583548_1280.png" alt="">
-            </div>
-            <div class="slide">
-                <img src="https://image-processor-storage.s3.us-west-2.amazonaws.com/images/866759932dc5358cee86f6552d1250f2/inside-bubble-spheres.jpg" alt="">
-            </div>
-            <div class="slide">
-                <img src="https://assets.imgix.net/hp/snowshoe.jpg" alt="">
-            </div>
-        </div>
-       
+    <h1>ZEMS Slider Custom without Pager</h1>
+    <div class="zems_slider" data-slide="3" data-timeout="6000" data-play="on" data-pager="on" data-control="on">
+        <div class="zems_slider_container">
+            <div class="zems_slide">Slide Custom 1</div>
+            <div class="zems_slide">Slide Custom 2</div>
+            <div class="zems_slide">Slide Custom 3</div>
+            <div class="zems_slide">Slide Custom 4</div>
+            <div class="zems_slide">Slide Custom 5</div>
+            <div class="zems_slide">Slide Custom 6</div>
+            <div class="zems_slide">Slide Custom 7</div>
+        </div>    
     </div>
-    <div id="upSlide"></div>
-    <script src="../src/zems_animate.js"></script>
+    <h1>ZEMS Slider Custom without Pager</h1>
+    <div class="zems_slider" data-slide="3" data-play="on">
+        <div class="zems_slider_container">
+            <div class="zems_slide">Slide Custom 1</div>
+            <div class="zems_slide">Slide Custom 2</div>
+            <div class="zems_slide">Slide Custom 3</div>
+            <div class="zems_slide">Slide Custom 4</div>
+            <div class="zems_slide">Slide Custom 5</div>
+        </div>    
+    </div>
     <script type="module">
-        import {zems_slider, zems_slider_builder, zems_slider_pager, zems_slider_pager_builder} from '../src/zems_slider.js';
-        zems_slider();
-        // zems_slider_builder();
-        // zems_slider_pager();
-        // zems_slider_pager_builder();
+        import {zemsSlider_basic} from '../src/zems_slider.js'
+        zemsSlider_basic({
+            name:'My Slider', 
+            style:'mySlider',
+            per_page:2
+        })
     </script>
-
 </body>
 </html>
+  
